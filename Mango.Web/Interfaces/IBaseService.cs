@@ -1,5 +1,4 @@
-﻿using Mango.Web.Dtos;
-using Mango.Web.DTOs;
+﻿using Mango.Web.DTOs;
 
 namespace Mango.Web.Interfaces;
 
