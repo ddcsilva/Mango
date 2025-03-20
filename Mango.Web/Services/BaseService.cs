@@ -1,12 +1,11 @@
-﻿using Mango.Web.Dtos;
-using Mango.Web.DTOs;
+﻿using Mango.Web.DTOs;
 using Mango.Web.Enums;
 using Mango.Web.Interfaces;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text;
 
-namespace Mango.Web.Service;
+namespace Mango.Web.Services;
 
 public class BaseService : IBaseService
 {
