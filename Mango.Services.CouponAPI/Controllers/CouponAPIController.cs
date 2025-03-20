@@ -1,4 +1,5 @@
 ﻿using Mango.Services.CouponAPI.Data;
+using Mango.Services.CouponAPI.DTOs;
 using Mango.Services.CouponAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,23 +11,27 @@ namespace Mango.Services.CouponAPI.Controllers;
 public class CouponAPIController(AppDbContext context) : ControllerBase
 {
     private readonly AppDbContext _context = context;
+    private ResponseDTO _response = new();
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Coupon>>> GetAllCoupons()
+    public async Task<ActionResult<ResponseDTO>> GetAllCoupons()
     {
         try
         {
             var coupons = await _context.Coupons.ToListAsync();
-            return Ok(coupons);
+            _response.Result = coupons;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return StatusCode(500, "Erro interno no servidor.");
+            _response.IsSuccess = false;
+            _response.Message = ex.Message;
         }
+
+        return _response;
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Coupon>> GetCouponById(int id)
+    public async Task<ActionResult<ResponseDTO>> GetCouponById(int id)
     {
         try
         {
@@ -34,14 +39,19 @@ public class CouponAPIController(AppDbContext context) : ControllerBase
 
             if (coupon == null)
             {
-                return NotFound($"Cupom com ID {id} não encontrado.");
+                _response.IsSuccess = false;
+                _response.Message = $"Cupom com ID {id} não encontrado.";
+                return NotFound(_response);
             }
 
-            return Ok(coupon);
+            _response.Result = coupon;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return StatusCode(500, "Erro interno no servidor.");
+            _response.IsSuccess = false;
+            _response.Message = ex.Message;
         }
+
+        return _response;
     }
 }
