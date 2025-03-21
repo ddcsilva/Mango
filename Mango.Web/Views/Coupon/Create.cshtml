@@ -1,0 +1,44 @@
+﻿@model CouponDTO
+<form asp-action="Create">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-white text-center">Criar Cupom</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-2 col-12">
+                <label class="control-label pt-2 fw-bold">Código do Cupom</label>
+            </div>
+            <div class="col-md-10 col-12 pb-3">
+                <input asp-for="CouponCode" class="form-control" />
+                <span asp-validation-for="CouponCode" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-2 col-12">
+                <label class="control-label pt-2 fw-bold">Valor do Desconto</label>
+            </div>
+            <div class="col-md-10 col-12 pb-3">
+                <input asp-for="DiscountAmount" class="form-control" />
+                <span asp-validation-for="DiscountAmount" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-2 col-12">
+                <label class="control-label pt-2 fw-bold">Valor Mínimo</label>
+            </div>
+            <div class="col-md-10 col-12 pb-3">
+                <input asp-for="MinAmount" class="form-control" />
+                <span asp-validation-for="MinAmount" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-5 offset-md-2 col-12 mb-2">
+                <a asp-action="Index" class="btn btn-primary form-control" aria-label="Voltar à Lista">Voltar à Lista</a>
+            </div>
+            <div class="col-md-5 col-12">
+                <input type="submit" value="Criar" class="btn btn-success form-control" aria-label="Criar Cupom" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -7,6 +7,7 @@ namespace Mango.Web.Features.Coupons.Controllers;
 
 public class CouponController(ICouponService couponService) : Controller
 {
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         List<CouponDTO> couponList = [];
@@ -19,5 +20,29 @@ public class CouponController(ICouponService couponService) : Controller
         }
 
         return View(couponList);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(CouponDTO model)
+    {
+        if (!ModelState.IsValid) return View(model);
+
+        var response = await couponService.CreateCouponAsync(model);
+
+        if (response != null && response.IsSuccess)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        ModelState.AddModelError(string.Empty, response?.Message ?? "Erro desconhecido ao criar cupom.");
+
+        return View(model);
     }
 }
