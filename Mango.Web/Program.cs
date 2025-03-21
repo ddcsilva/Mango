@@ -1,6 +1,7 @@
-using Mango.Web.Interfaces;
-using Mango.Web.Services;
-using Mango.Web.Utilities;
+using Mango.Web.Core.Base;
+using Mango.Web.Core.Utilities;
+using Mango.Web.Features.Coupons.Interfaces;
+using Mango.Web.Features.Coupons.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

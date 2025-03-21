@@ -1,23 +1,32 @@
 using Mango.Services.CouponAPI;
-using Mango.Services.CouponAPI.Data;
+using Mango.Services.CouponAPI.Application.Interfaces;
+using Mango.Services.CouponAPI.Application.Services;
+using Mango.Services.CouponAPI.Infrastructure.Data;
+using Mango.Services.CouponAPI.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Database
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-var mapper = MappingConfig.RegisterMaps().CreateMapper();
-builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+// Services & Repositories
+builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<ICouponRepository, CouponRepository>();
+
+// Controllers
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,13 +34,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
+// DB Migrations
 ApplyMigrations(app);
-
 app.Run();
 
 static void ApplyMigrations(WebApplication app)
