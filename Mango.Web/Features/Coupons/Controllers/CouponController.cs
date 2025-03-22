@@ -10,16 +10,23 @@ public class CouponController(ICouponService couponService) : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        List<CouponDTO> couponList = [];
-
         var response = await couponService.GetAllCouponsAsync();
 
-        if (response.IsSuccess && response.Result is not null)
+        if (response is null || !response.IsSuccess || response.Result is null)
         {
-            couponList = JsonConvert.DeserializeObject<List<CouponDTO>>(response.Result.ToString()!) ?? [];
+            return View(new List<CouponDTO>());
         }
 
-        return View(couponList);
+        var json = response.Result.ToString();
+
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            return View(new List<CouponDTO>());
+        }
+
+        var coupons = JsonConvert.DeserializeObject<List<CouponDTO>>(json) ?? [];
+
+        return View(coupons);
     }
 
     [HttpGet]
@@ -36,12 +43,59 @@ public class CouponController(ICouponService couponService) : Controller
 
         var response = await couponService.CreateCouponAsync(model);
 
-        if (response != null && response.IsSuccess)
+        if (response is not null && response.IsSuccess)
         {
             return RedirectToAction(nameof(Index));
         }
 
         ModelState.AddModelError(string.Empty, response?.Message ?? "Erro desconhecido ao criar cupom.");
+
+        return View(model);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int couponId)
+    {
+        if (couponId <= 0)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        var response = await couponService.GetCouponByIdAsync(couponId);
+
+        if (response is null || !response.IsSuccess || response.Result is null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        var json = response.Result.ToString();
+
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        var coupon = JsonConvert.DeserializeObject<CouponDTO>(json);
+
+        return View(coupon);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(CouponDTO model)
+    {
+        if (model.CouponId <= 0)
+        {
+            ModelState.AddModelError(string.Empty, "ID inválido para exclusão.");
+            return View(model);
+        }
+
+        var response = await couponService.DeleteCouponAsync(model.CouponId);
+
+        if (response != null && response.IsSuccess)
+        {
+            return RedirectToAction(nameof(Index));
+        }
 
         return View(model);
     }
