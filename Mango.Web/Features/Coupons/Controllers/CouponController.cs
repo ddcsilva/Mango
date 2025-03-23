@@ -45,11 +45,11 @@ public class CouponController(ICouponService couponService) : Controller
 
         if (response is not null && response.IsSuccess)
         {
+            TempData["success"] = "Cupom criado com sucesso!";
             return RedirectToAction(nameof(Index));
         }
 
-        ModelState.AddModelError(string.Empty, response?.Message ?? "Erro desconhecido ao criar cupom.");
-
+        TempData["error"] = response?.Message ?? "Erro ao criar cupom.";
         return View(model);
     }
 
@@ -58,6 +58,7 @@ public class CouponController(ICouponService couponService) : Controller
     {
         if (couponId <= 0)
         {
+            TempData["error"] = "ID inválido.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -65,6 +66,7 @@ public class CouponController(ICouponService couponService) : Controller
 
         if (response is null || !response.IsSuccess || response.Result is null)
         {
+            TempData["error"] = "Cupom não encontrado.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -72,6 +74,7 @@ public class CouponController(ICouponService couponService) : Controller
 
         if (string.IsNullOrWhiteSpace(json))
         {
+            TempData["error"] = "Resposta inválida da API.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -94,9 +97,11 @@ public class CouponController(ICouponService couponService) : Controller
 
         if (response != null && response.IsSuccess)
         {
+            TempData["success"] = "Cupom excluído com sucesso!";
             return RedirectToAction(nameof(Index));
         }
 
+        TempData["error"] = response?.Message ?? "Erro ao excluir cupom.";
         return View(model);
     }
 }
