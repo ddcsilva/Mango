@@ -1,6 +1,5 @@
 ﻿using Mango.Services.AuthAPI.Application.DTOs;
 using Mango.Services.AuthAPI.Application.Interfaces;
-using Mango.Services.AuthAPI.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.AuthAPI.Controllers;
