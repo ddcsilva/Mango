@@ -1,3 +1,4 @@
+using AuthAPI.Domain.Models;
 using Mango.Services.AuthAPI.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 // Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
