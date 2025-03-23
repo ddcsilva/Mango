@@ -1,7 +1,7 @@
 ﻿using Mango.Web.Core.DTOs;
 using Mango.Web.Features.Auth.DTOs;
 
-namespace Mango.Web.Features.Auth;
+namespace Mango.Web.Features.Auth.Interfaces;
 
 public interface IAuthService
 {

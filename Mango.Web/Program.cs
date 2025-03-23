@@ -6,6 +6,7 @@ builder.Services.AddMvcWithValidation();
 builder.Services.AddAppFluentValidation();  
 builder.Services.AddAppHttpClients(builder.Configuration);
 builder.Services.AddDependencies();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

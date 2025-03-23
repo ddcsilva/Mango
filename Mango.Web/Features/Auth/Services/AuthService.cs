@@ -3,6 +3,7 @@ using Mango.Web.Core.DTOs;
 using Mango.Web.Core.Enums;
 using Mango.Web.Core.Utilities;
 using Mango.Web.Features.Auth.DTOs;
+using Mango.Web.Features.Auth.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace Mango.Web.Features.Auth.Services;
