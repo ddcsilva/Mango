@@ -39,9 +39,28 @@ public class AuthService(AppDbContext context, UserManager<ApplicationUser> user
 
         return "Erro desconhecido";
     }
-    public Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO)
+    public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO)
     {
-        throw new NotImplementedException();
+        var user = context.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == loginRequestDTO.UserName.ToLower());
+
+        bool isValid = await userManager.CheckPasswordAsync(user, loginRequestDTO.Password);
+
+        if (user is null || !isValid)
+        {
+            return new LoginResponseDTO(User: null, Token: "");
+        }
+
+        var userDTO = new UserDTO
+        {
+            Id = user.Id,
+            Email = user.Email,
+            Name = user.Name,
+            PhoneNumber = user.PhoneNumber
+        };
+
+        var loginResponse = new LoginResponseDTO(User: userDTO, Token: "");
+
+        return loginResponse;
     }
 }
 

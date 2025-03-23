@@ -1,5 +1,6 @@
 ﻿using Mango.Services.AuthAPI.Application.DTOs;
 using Mango.Services.AuthAPI.Application.Interfaces;
+using Mango.Services.AuthAPI.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.AuthAPI.Controllers;
@@ -27,8 +28,21 @@ public class AuthAPIController(IAuthService authService) : ControllerBase
 
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login()
+    public async Task<IActionResult> Login([FromBody] LoginRequestDTO model)
     {
-        return Ok();
+        var response = new ResponseDTO();
+
+        var loginResponse = await authService.Login(model);
+
+        if (loginResponse.User == null)
+        {
+            response.IsSuccess = false;
+            response.Message = "Username or password is incorrect.";
+            return BadRequest(response);
+        }
+
+        response.Result = loginResponse;
+        return Ok(response);
     }
+
 }
