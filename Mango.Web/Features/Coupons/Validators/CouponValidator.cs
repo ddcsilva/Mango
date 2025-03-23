@@ -3,9 +3,9 @@ using Mango.Web.Features.Coupons.DTOs;
 
 namespace Mango.Web.Features.Coupons.Validators;
 
-public class CouponDTOValidator : AbstractValidator<CouponDTO>
+public class CouponValidator : AbstractValidator<CouponDTO>
 {
-    public CouponDTOValidator()
+    public CouponValidator()
     {
         RuleFor(c => c.CouponCode)
             .NotEmpty().WithMessage("O código do cupom é obrigatório.")
