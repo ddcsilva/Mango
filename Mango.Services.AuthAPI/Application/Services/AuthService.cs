@@ -43,6 +43,7 @@ public class AuthService(
 
         return "Erro desconhecido";
     }
+
     public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO)
     {
         var user = context.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == loginRequestDTO.UserName.ToLower());
@@ -67,6 +68,22 @@ public class AuthService(
         var loginResponse = new LoginResponseDTO(User: userDTO, Token: token);
 
         return loginResponse;
+    }
+
+    public async Task<bool> AssignRole(string email, string roleName)
+    {
+        var user = context.ApplicationUsers.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
+
+        if (user == null) return false;
+
+        if (!roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+        {
+            roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+        }
+
+        await userManager.AddToRoleAsync(user, roleName);
+
+        return true;
     }
 }
 
