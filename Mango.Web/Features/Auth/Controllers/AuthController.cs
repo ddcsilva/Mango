@@ -1,13 +1,14 @@
-﻿using Mango.Web.Core.Helpers;
+﻿using Mango.Web.Core.DTOs;
+using Mango.Web.Core.Extensions;
+using Mango.Web.Core.Helpers;
 using Mango.Web.Features.Auth.DTOs;
 using Mango.Web.Features.Auth.Enums;
 using Mango.Web.Features.Auth.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
 
 namespace Mango.Web.Features.Auth.Controllers;
 
-public class AuthController(IAuthService authService) : Controller
+public class AuthController(IAuthService authService, ITokenService tokenService) : Controller
 {
     [HttpGet]
     public IActionResult Register()
@@ -33,9 +34,7 @@ public class AuthController(IAuthService authService) : Controller
         if (registerResponse is null || !registerResponse.IsSuccess)
         {
             TempData["error"] = registerResponse?.Message ?? "Erro ao registrar o usuário.";
-
             ViewBag.RoleList = EnumHelper.ToSelectList<UserRole>();
-
             return View(registrationRequestDTO);
         }
 
@@ -66,9 +65,12 @@ public class AuthController(IAuthService authService) : Controller
         if (!ModelState.IsValid) return View(loginRequestDTO);
 
         var response = await authService.LoginAsync(loginRequestDTO);
+        var loginData = response?.DeserializeResult<LoginResponseDTO>();
 
-        if (response is not null && response.IsSuccess)
+        if (loginData is not null && !string.IsNullOrEmpty(loginData.Token))
         {
+            tokenService.SetToken(loginData.Token);
+            TempData["success"] = "Login realizado com sucesso!";
             return RedirectToAction("Index", "Home");
         }
 
@@ -79,7 +81,8 @@ public class AuthController(IAuthService authService) : Controller
     [HttpGet]
     public IActionResult Logout()
     {
-        // Será implementado mais tarde
+        tokenService.ClearToken();
+        TempData["success"] = "Você saiu com sucesso!";
         return RedirectToAction("Index", "Home");
     }
 }
