@@ -13,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 // Services
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Identity
