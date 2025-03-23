@@ -1,19 +1,20 @@
 ﻿using Mango.Services.AuthAPI.Application.DTOs;
 using Mango.Services.AuthAPI.Application.Interfaces;
 using Mango.Services.AuthAPI.Domain.Models;
-using Mango.Services.AuthAPI.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace Mango.Services.AuthAPI.Application.Services;
 
 public class AuthService(
-    AppDbContext context, 
     UserManager<ApplicationUser> userManager, 
     RoleManager<IdentityRole> roleManager,
     IJwtTokenGenerator jwtTokenGenerator) : IAuthService
 {
     public async Task<string> Register(RegistrationRequestDTO registrationRequestDTO)
     {
+        var userExists = await userManager.FindByEmailAsync(registrationRequestDTO.Email);
+        if (userExists != null) return "Usuário já existe com este e-mail.";
+
         try
         {
             var user = new ApplicationUser
@@ -27,14 +28,9 @@ public class AuthService(
 
             var result = await userManager.CreateAsync(user, registrationRequestDTO.Password);
 
-            if (result.Succeeded)
-            {
-                return "";
-            }
-            else
-            {
-                return result.Errors.FirstOrDefault()?.Description ?? "Erro desconhecido";
-            }
+            if (!result.Succeeded) return result.Errors.FirstOrDefault()?.Description ?? "Erro desconhecido ao registrar o usuário.";
+
+            return string.Empty;
         }
         catch (Exception)
         {
@@ -46,13 +42,18 @@ public class AuthService(
 
     public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO)
     {
-        var user = context.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == loginRequestDTO.UserName.ToLower());
+        var user = await userManager.FindByNameAsync(loginRequestDTO.UserName);
 
-        bool isValid = await userManager.CheckPasswordAsync(user, loginRequestDTO.Password);
-
-        if (user is null || !isValid)
+        if (user is null)
         {
-            return new LoginResponseDTO(User: null, Token: "");
+            return new LoginResponseDTO(null!, string.Empty);
+        }
+
+        var isValid = await userManager.CheckPasswordAsync(user, loginRequestDTO.Password);
+
+        if (!isValid)
+        {
+            return new LoginResponseDTO(null!, string.Empty);
         }
 
         var token = jwtTokenGenerator.GenerateToken(user);
@@ -60,30 +61,27 @@ public class AuthService(
         var userDTO = new UserDTO
         {
             Id = user.Id,
-            Email = user.Email,
+            Email = user.Email ?? string.Empty,
             Name = user.Name,
-            PhoneNumber = user.PhoneNumber
+            PhoneNumber = user.PhoneNumber ?? string.Empty
         };
 
-        var loginResponse = new LoginResponseDTO(User: userDTO, Token: token);
-
-        return loginResponse;
+        return new LoginResponseDTO(userDTO, token);
     }
 
     public async Task<bool> AssignRole(string email, string roleName)
     {
-        var user = context.ApplicationUsers.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
+        var user = await userManager.FindByEmailAsync(email);
 
         if (user == null) return false;
 
-        if (!roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+        if (!await roleManager.RoleExistsAsync(roleName))
         {
-            roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+            await roleManager.CreateAsync(new IdentityRole(roleName));
         }
 
-        await userManager.AddToRoleAsync(user, roleName);
-
-        return true;
+        var result = await userManager.AddToRoleAsync(user, roleName);
+        return result.Succeeded;
     }
 }
 
