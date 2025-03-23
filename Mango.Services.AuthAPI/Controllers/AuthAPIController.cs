@@ -9,11 +9,11 @@ namespace Mango.Services.AuthAPI.Controllers;
 public class AuthAPIController(IAuthService authService) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegistrationRequestDTO model)
+    public async Task<IActionResult> Register([FromBody] RegistrationRequestDTO registrationRequestDTO)
     {
         var response = new ResponseDTO();
 
-        string errorMessage = await authService.Register(model);
+        string errorMessage = await authService.Register(registrationRequestDTO);
 
         if (!string.IsNullOrEmpty(errorMessage))
         {
@@ -25,7 +25,6 @@ public class AuthAPIController(IAuthService authService) : ControllerBase
         return Ok(response);
     }
 
-
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestDTO model)
     {
@@ -36,7 +35,7 @@ public class AuthAPIController(IAuthService authService) : ControllerBase
         if (loginResponse.User == null)
         {
             response.IsSuccess = false;
-            response.Message = "Username or password is incorrect.";
+            response.Message = "Usuário ou senha incorretos.";
             return BadRequest(response);
         }
 
@@ -54,7 +53,7 @@ public class AuthAPIController(IAuthService authService) : ControllerBase
         if (!assignRoleSuccessful)
         {
             response.IsSuccess = false;
-            response.Message = "Error encountered while assigning role.";
+            response.Message = "Erro ao atribuir função.";
             return BadRequest(response);
         }
 

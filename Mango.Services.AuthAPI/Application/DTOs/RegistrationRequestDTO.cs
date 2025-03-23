@@ -1,3 +1,10 @@
 ﻿namespace Mango.Services.AuthAPI.Application.DTOs;
 
-public record RegistrationRequestDTO(string Name, string Email, string PhoneNumber, string Password, string Role = "Customer");
+public class RegistrationRequestDTO()
+{
+    public string Name { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public string Role { get; set; } = "Customer";
+}

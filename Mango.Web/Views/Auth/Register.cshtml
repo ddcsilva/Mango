@@ -1,0 +1,43 @@
+﻿@model RegistrationRequestDTO
+
+<form asp-action="Register" method="post">
+    <div class="container border p-4">
+        <h2 class="text-center mb-4">Criar Conta</h2>
+
+        <div asp-validation-summary="All" class="text-danger text-center mb-3"></div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-12 pb-3">
+                <input asp-for="Name" class="form-control" placeholder="Nome completo" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 offset-md-3 col-12 pb-3">
+                <input asp-for="Email" class="form-control" placeholder="E-mail" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 offset-md-3 col-12 pb-3">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Senha" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 offset-md-3 col-12 pb-3">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Telefone" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 offset-md-3 col-12 pb-3">
+                <select asp-for="Role" asp-items="ViewBag.RoleList" class="form-select">
+                    <option disabled selected>-- Selecione o perfil --</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+
+            </div>
+
+            <div class="col-md-6 offset-md-3 col-12">
+                <button type="submit" class="btn btn-primary w-100">Registrar</button>
+            </div>
+        </div>
+    </div>
+</form>

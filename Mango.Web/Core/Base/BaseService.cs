@@ -13,7 +13,11 @@ public class BaseService(IHttpClientFactory httpClientFactory) : IBaseService
         {
             if (string.IsNullOrWhiteSpace(requestDTO.Url))
             {
-                return new ResponseDTO{ Result = null, IsSuccess = false, Message = "A URL da requisição não pode estar vazia." };
+                return new ResponseDTO
+                {
+                    IsSuccess = false,
+                    Message = "A URL da requisição não pode estar vazia."
+                };
             }
 
             var client = httpClientFactory.CreateClient("MangoAPI");
@@ -30,26 +34,42 @@ public class BaseService(IHttpClientFactory httpClientFactory) : IBaseService
                 }
             };
 
-            message.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            message.Headers.Accept.Add(new("application/json"));
 
-            if (requestDTO.Data != null)
+            if (requestDTO.Data is not null)
             {
-                message.Content = new StringContent(JsonConvert.SerializeObject(requestDTO.Data), Encoding.UTF8, "application/json");
+                message.Content = new StringContent(
+                    JsonConvert.SerializeObject(requestDTO.Data),
+                    Encoding.UTF8,
+                    "application/json"
+                );
             }
 
             var apiResponse = await client.SendAsync(message);
+            var apiContent = await apiResponse.Content.ReadAsStringAsync();
 
-            if (!apiResponse.IsSuccessStatusCode)
+            var response = JsonConvert.DeserializeObject<ResponseDTO>(apiContent);
+
+            if (response is not null)
             {
-                return new ResponseDTO { Result = null, IsSuccess = false, Message = $"Erro: {apiResponse.StatusCode}" };
+                response.IsSuccess = apiResponse.IsSuccessStatusCode;
+                return response;
             }
 
-            var apiContent = await apiResponse.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ResponseDTO>(apiContent) ?? new ResponseDTO { IsSuccess = false, Message = "Erro ao desserializar resposta da API." };
+            return new ResponseDTO
+            {
+                IsSuccess = false,
+                Message = $"Erro {(int)apiResponse.StatusCode}: {apiResponse.ReasonPhrase}"
+            };
         }
         catch (Exception ex)
         {
-            return new ResponseDTO { Result = null, IsSuccess = false, Message = $"Erro ao consumir API: {ex.Message}" };
+            return new ResponseDTO
+            {
+                IsSuccess = false,
+                Message = $"Erro inesperado ao consumir API: {ex.Message}"
+            };
         }
     }
 }
+

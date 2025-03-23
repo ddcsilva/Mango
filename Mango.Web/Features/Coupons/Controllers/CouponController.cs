@@ -37,11 +37,11 @@ public class CouponController(ICouponService couponService) : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(CouponDTO model)
+    public async Task<IActionResult> Create(CouponDTO couponDTO)
     {
-        if (!ModelState.IsValid) return View(model);
+        if (!ModelState.IsValid) return View(couponDTO);
 
-        var response = await couponService.CreateCouponAsync(model);
+        var response = await couponService.CreateCouponAsync(couponDTO);
 
         if (response is not null && response.IsSuccess)
         {
@@ -50,7 +50,7 @@ public class CouponController(ICouponService couponService) : Controller
         }
 
         TempData["error"] = response?.Message ?? "Erro ao criar cupom.";
-        return View(model);
+        return View(couponDTO);
     }
 
     [HttpGet]
