@@ -1,3 +1,3 @@
-﻿namespace Mango.Web.Features.Coupons.DTOs;
+﻿namespace Mango.Web.Features.Auth.DTOs;
 
 public record LoginResponseDTO(UserDTO User, string Token);

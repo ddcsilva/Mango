@@ -1,30 +1,14 @@
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using Mango.Web.Core.Base;
-using Mango.Web.Core.Utilities;
-using Mango.Web.Features.Coupons.Interfaces;
-using Mango.Web.Features.Coupons.Services;
-using Mango.Web.Features.Coupons.Validators;
+using Mango.Web.Core.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews(options =>
-{
-    options.ModelValidatorProviders.Clear();
-});
-
-builder.Services.AddValidatorsFromAssemblyContaining<CouponDTOValidator>();
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddFluentValidationClientsideAdapters();
-
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpClient();
-builder.Services.Configure<ServiceUrls>(builder.Configuration.GetSection("ServiceURLs"));
-
-builder.Services.AddScoped<IBaseService, BaseService>();
-builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddMvcWithValidation();
+builder.Services.AddAppFluentValidation();  
+builder.Services.AddAppHttpClients(builder.Configuration);
+builder.Services.AddDependencies();
 
 var app = builder.Build();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
