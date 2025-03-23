@@ -1,4 +1,4 @@
-﻿namespace AuthAPI.Domain.Models;
+﻿namespace Mango.Services.AuthAPI.Domain.Models;
 
 public class JwtOptions
 {

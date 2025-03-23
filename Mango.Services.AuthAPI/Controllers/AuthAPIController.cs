@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AuthAPI.Controllers;
+namespace Mango.Services.AuthAPI.Controllers;
 
 [Route("api/auth")]
 [ApiController]
