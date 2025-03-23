@@ -1,3 +1,5 @@
+using Mango.Services.AuthAPI.Application.Interfaces;
+using Mango.Services.AuthAPI.Application.Services;
 using Mango.Services.AuthAPI.Domain.Models;
 using Mango.Services.AuthAPI.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+// Services
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

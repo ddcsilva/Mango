@@ -1,16 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mango.Services.AuthAPI.Application.DTOs;
+using Mango.Services.AuthAPI.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.AuthAPI.Controllers;
 
 [Route("api/auth")]
 [ApiController]
-public class AuthAPIController : ControllerBase
+public class AuthAPIController(IAuthService authService) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<IActionResult> Register()
+    public async Task<IActionResult> Register([FromBody] RegistrationRequestDTO model)
     {
-        return Ok();
+        var response = new ResponseDTO();
+
+        string errorMessage = await authService.Register(model);
+
+        if (!string.IsNullOrEmpty(errorMessage))
+        {
+            response.IsSuccess = false;
+            response.Message = errorMessage;
+            return BadRequest(response);
+        }
+
+        return Ok(response);
     }
+
 
     [HttpPost("login")]
     public async Task<IActionResult> Login()
