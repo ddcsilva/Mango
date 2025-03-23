@@ -1,8 +1,5 @@
-using Mango.Services.CouponAPI;
-using Mango.Services.CouponAPI.Application.Interfaces;
-using Mango.Services.CouponAPI.Application.Services;
-using Mango.Services.CouponAPI.Infrastructure.Data;
-using Mango.Services.CouponAPI.Infrastructure.Repositories;
+using Mango.Services.AuthAPI.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +9,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// AutoMapper
-builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-// Services & Repositories
-builder.Services.AddScoped<ICouponService, CouponService>();
-builder.Services.AddScoped<ICouponRepository, CouponRepository>();
+// Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
 // Controllers
 builder.Services.AddControllers();
@@ -36,6 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
