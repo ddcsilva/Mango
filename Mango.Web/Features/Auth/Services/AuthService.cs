@@ -8,33 +8,33 @@ using Microsoft.Extensions.Options;
 
 namespace Mango.Web.Features.Auth.Services;
 
-public class AuthService(IHttpClientFactory clientFactory, IOptions<ServiceUrls> serviceUrls) : BaseService(clientFactory), IAuthService
+public class AuthService(IBaseService baseService, IOptions<ServiceUrls> serviceUrls) :  IAuthService
 {
     private readonly string _authApiBase = serviceUrls.Value.AuthApiBase;
 
     public async Task<ResponseDTO?> LoginAsync(LoginRequestDTO loginRequestDTO)
     {
-        return await SendAsync(new RequestDTO
+        return await baseService.SendAsync(new RequestDTO
         {
             ApiType = ApiType.POST,
             Url = $"{_authApiBase}/api/auth/login",
             Data = loginRequestDTO
-        });
+        }, withBearer: false);
     }
 
     public async Task<ResponseDTO?> RegisterAsync(RegistrationRequestDTO registrationRequestDTO)
     {
-        return await SendAsync(new RequestDTO
+        return await baseService.SendAsync(new RequestDTO
         {
             ApiType = ApiType.POST,
             Url = $"{_authApiBase}/api/auth/register",
             Data = registrationRequestDTO
-        });
+        }, withBearer: false);
     }
 
     public async Task<ResponseDTO?> AssignRoleAsync(RegistrationRequestDTO registrationRequestDTO)
     {
-        return await SendAsync(new RequestDTO
+        return await baseService.SendAsync(new RequestDTO
         {
             ApiType = ApiType.POST,
             Url = $"{_authApiBase}/api/auth/assignRole",

@@ -1,13 +1,15 @@
 ﻿using Mango.Web.Core.DTOs;
 using Mango.Web.Core.Enums;
+using Mango.Web.Features.Auth.Interfaces;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Mango.Web.Core.Base;
 
-public class BaseService(IHttpClientFactory httpClientFactory) : IBaseService
+public class BaseService(IHttpClientFactory httpClientFactory, ITokenService tokenService) : IBaseService
 {
-    public async Task<ResponseDTO> SendAsync(RequestDTO requestDTO)
+    public async Task<ResponseDTO> SendAsync(RequestDTO requestDTO, bool withBearer = true)
     {
         try
         {
@@ -35,6 +37,12 @@ public class BaseService(IHttpClientFactory httpClientFactory) : IBaseService
             };
 
             message.Headers.Accept.Add(new("application/json"));
+
+            if (withBearer)
+            {
+                var token = tokenService.GetToken();
+                message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
 
             if (requestDTO.Data is not null)
             {
