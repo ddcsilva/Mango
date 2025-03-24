@@ -1,4 +1,5 @@
-﻿using Mango.Web.Features.Coupons.DTOs;
+﻿using Mango.Web.Core.Extensions;
+using Mango.Web.Features.Coupons.DTOs;
 using Mango.Web.Features.Coupons.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,19 +13,13 @@ public class CouponController(ICouponService couponService) : Controller
     {
         var response = await couponService.GetAllCouponsAsync();
 
-        if (response is null || !response.IsSuccess || response.Result is null)
+        if (response is null || !response.IsSuccess)
         {
+            TempData["error"] = response?.Message ?? "Erro ao carregar cupons.";
             return View(new List<CouponDTO>());
         }
 
-        var json = response.Result.ToString();
-
-        if (string.IsNullOrWhiteSpace(json))
-        {
-            return View(new List<CouponDTO>());
-        }
-
-        var coupons = JsonConvert.DeserializeObject<List<CouponDTO>>(json) ?? [];
+        var coupons = response.DeserializeResult<List<CouponDTO>>() ?? [];
 
         return View(coupons);
     }
