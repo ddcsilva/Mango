@@ -2,6 +2,7 @@
 using Mango.Web.Core.Enums;
 using Mango.Web.Features.Auth.Interfaces;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -36,38 +37,37 @@ public class BaseService(IHttpClientFactory httpClientFactory, ITokenService tok
                 }
             };
 
-            message.Headers.Accept.Add(new("application/json"));
+            message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             if (withBearer)
             {
                 var token = tokenService.GetToken();
-                message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                }
             }
 
             if (requestDTO.Data is not null)
             {
-                message.Content = new StringContent(
-                    JsonConvert.SerializeObject(requestDTO.Data),
-                    Encoding.UTF8,
-                    "application/json"
-                );
+                var json = JsonConvert.SerializeObject(requestDTO.Data);
+                message.Content = new StringContent(json, Encoding.UTF8, "application/json");
             }
 
             var apiResponse = await client.SendAsync(message);
             var apiContent = await apiResponse.Content.ReadAsStringAsync();
 
-            var response = JsonConvert.DeserializeObject<ResponseDTO>(apiContent);
-
-            if (response is not null)
+            if (!apiResponse.IsSuccessStatusCode)
             {
-                response.IsSuccess = apiResponse.IsSuccessStatusCode;
-                return response;
+                return CreateErrorResponse(apiResponse.StatusCode);
             }
 
-            return new ResponseDTO
+            var response = JsonConvert.DeserializeObject<ResponseDTO>(apiContent);
+
+            return response ?? new ResponseDTO
             {
                 IsSuccess = false,
-                Message = $"Erro {(int)apiResponse.StatusCode}: {apiResponse.ReasonPhrase}"
+                Message = "Erro ao desserializar resposta da API."
             };
         }
         catch (Exception ex)
@@ -79,5 +79,14 @@ public class BaseService(IHttpClientFactory httpClientFactory, ITokenService tok
             };
         }
     }
-}
 
+    private static ResponseDTO CreateErrorResponse(HttpStatusCode status) =>
+        status switch
+        {
+            HttpStatusCode.NotFound => new() { IsSuccess = false, Message = "Recurso não encontrado." },
+            HttpStatusCode.Forbidden => new() { IsSuccess = false, Message = "Acesso negado." },
+            HttpStatusCode.Unauthorized => new() { IsSuccess = false, Message = "Não autorizado." },
+            HttpStatusCode.InternalServerError => new() { IsSuccess = false, Message = "Erro interno no servidor." },
+            _ => new() { IsSuccess = false, Message = $"Erro {(int)status}: {status}" }
+        };
+}

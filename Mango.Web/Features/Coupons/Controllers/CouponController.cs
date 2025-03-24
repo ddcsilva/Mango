@@ -1,6 +1,8 @@
 ﻿using Mango.Web.Core.Extensions;
+using Mango.Web.Features.Auth.Enums;
 using Mango.Web.Features.Coupons.DTOs;
 using Mango.Web.Features.Coupons.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

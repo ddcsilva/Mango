@@ -34,6 +34,7 @@ public class CouponAPIController(ICouponService couponService) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "ADMIN")]
     public async Task<ActionResult<ResponseDTO>> CreateCoupon([FromBody] CouponDTO couponDTO)
     {
         var response = await _couponService.CreateCouponAsync(couponDTO);
@@ -41,6 +42,7 @@ public class CouponAPIController(ICouponService couponService) : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "ADMIN")]
     public async Task<ActionResult<ResponseDTO>> UpdateCoupon([FromBody] CouponDTO couponDTO)
     {
         var response = await _couponService.UpdateCouponAsync(couponDTO);
@@ -48,6 +50,7 @@ public class CouponAPIController(ICouponService couponService) : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "ADMIN")]
     public async Task<ActionResult<ResponseDTO>> DeleteCoupon(int id)
     {
         var response = await _couponService.DeleteCouponAsync(id);
