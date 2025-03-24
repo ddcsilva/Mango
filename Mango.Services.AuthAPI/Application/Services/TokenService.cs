@@ -8,9 +8,9 @@ using System.Text;
 
 namespace Mango.Services.AuthAPI.Application.Services;
 
-public class JwtTokenGenerator(IOptions<JwtOptions> jwtOptions) : IJwtTokenGenerator
+public class TokenService(IOptions<JwtOptions> jwtOptions) : ITokenService
 {
-    public string GenerateToken(ApplicationUser user)
+    public string GenerateToken(ApplicationUser user, IEnumerable<string> roles)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(jwtOptions.Value.Secret);
@@ -22,6 +22,8 @@ public class JwtTokenGenerator(IOptions<JwtOptions> jwtOptions) : IJwtTokenGener
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new(ClaimTypes.Name, user.UserName ?? string.Empty)
         };
+
+        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {

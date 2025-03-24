@@ -109,9 +109,11 @@ public class AuthController(IAuthService authService, ITokenService tokenService
         identity.AddClaim(new Claim(ClaimTypes.Name,
             jwtToken.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Email)?.Value ?? ""));
 
+        identity.AddClaim(new Claim(ClaimTypes.Role,
+            jwtToken.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Role)?.Value ?? ""));
+
         var principal = new ClaimsPrincipal(identity);
 
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
     }
-
 }

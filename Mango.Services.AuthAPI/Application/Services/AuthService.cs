@@ -8,7 +8,7 @@ namespace Mango.Services.AuthAPI.Application.Services;
 public class AuthService(
     UserManager<ApplicationUser> userManager, 
     RoleManager<IdentityRole> roleManager,
-    IJwtTokenGenerator jwtTokenGenerator) : IAuthService
+    ITokenService jwtTokenGenerator) : IAuthService
 {
     public async Task<string> Register(RegistrationRequestDTO registrationRequestDTO)
     {
@@ -56,7 +56,8 @@ public class AuthService(
             return new LoginResponseDTO(null!, string.Empty);
         }
 
-        var token = jwtTokenGenerator.GenerateToken(user);
+        var roles = await userManager.GetRolesAsync(user);
+        var token = jwtTokenGenerator.GenerateToken(user, roles);
 
         var userDTO = new UserDTO
         {

@@ -7,7 +7,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDependencies(this IServiceCollection services)
     {
-        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
 
         return services;
