@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Features.Coupons.DTOs;
+﻿namespace MicroStore.Web.Features.Coupons.DTOs;
 
 public class CouponDTO
 {

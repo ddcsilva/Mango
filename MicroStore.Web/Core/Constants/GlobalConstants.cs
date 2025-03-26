@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Core.Constants;
+﻿namespace MicroStore.Web.Core.Constants;
 
 public static class GlobalConstants
 {

@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Core.Extensions;
+﻿namespace MicroStore.Web.Core.Extensions;
 
 public static class MvcExtensions
 {

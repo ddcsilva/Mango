@@ -1,12 +1,12 @@
-﻿using Mango.Web.Core.DTOs;
-using Mango.Web.Core.Enums;
-using Mango.Web.Core.Base;
-using Mango.Web.Core.Utilities;
-using Mango.Web.Features.Coupons.Interfaces;
-using Microsoft.Extensions.Options;
-using Mango.Web.Features.Coupons.DTOs;
+﻿using Microsoft.Extensions.Options;
+using MicroStore.Web.Features.Coupons.Interfaces;
+using MicroStore.Web.Core.Enums;
+using MicroStore.Web.Core.DTOs;
+using MicroStore.Web.Features.Coupons.DTOs;
+using MicroStore.Web.Core.Base;
+using MicroStore.Web.Core.Utilities;
 
-namespace Mango.Web.Features.Coupons.Services;
+namespace MicroStore.Web.Features.Coupons.Services;
 
 public class CouponService(IBaseService baseService, IOptions<ServiceUrls> serviceUrls) : ICouponService
 {

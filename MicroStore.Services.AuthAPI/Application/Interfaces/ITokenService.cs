@@ -1,6 +1,6 @@
-﻿using Mango.Services.AuthAPI.Domain.Models;
+﻿using MicroStore.Services.AuthAPI.Domain.Models;
 
-namespace Mango.Services.AuthAPI.Application.Interfaces;
+namespace MicroStore.Services.AuthAPI.Application.Interfaces;
 
 public interface ITokenService
 {

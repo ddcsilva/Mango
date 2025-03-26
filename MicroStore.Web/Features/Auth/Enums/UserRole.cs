@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mango.Web.Features.Auth.Enums;
+namespace MicroStore.Web.Features.Auth.Enums;
 
 public enum UserRole
 {

@@ -1,9 +1,9 @@
-﻿using Mango.Services.CouponAPI.Application.Interfaces;
-using Mango.Services.CouponAPI.Domain.Models;
-using Mango.Services.CouponAPI.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MicroStore.Services.CouponAPI.Application.Interfaces;
+using MicroStore.Services.CouponAPI.Domain.Models;
+using MicroStore.Services.CouponAPI.Infrastructure.Data;
 
-namespace Mango.Services.CouponAPI.Infrastructure.Repositories;
+namespace MicroStore.Services.CouponAPI.Infrastructure.Repositories;
 
 public class CouponRepository(AppDbContext context) : ICouponRepository
 {

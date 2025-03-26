@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Mango.Web.Features.Auth.DTOs;
+using MicroStore.Web.Features.Auth.DTOs;
 
-namespace Mango.Web.Features.Auth.Validators;
+namespace MicroStore.Web.Features.Auth.Validators;
 
 public class RegisterValidator : AbstractValidator<RegistrationRequestDTO>
 {

@@ -1,10 +1,10 @@
-﻿using Mango.Web.Core.Base;
-using Mango.Web.Features.Auth.Interfaces;
-using Mango.Web.Features.Auth.Services;
-using Mango.Web.Features.Coupons.Interfaces;
-using Mango.Web.Features.Coupons.Services;
+﻿using MicroStore.Web.Core.Base;
+using MicroStore.Web.Features.Auth.Interfaces;
+using MicroStore.Web.Features.Auth.Services;
+using MicroStore.Web.Features.Coupons.Interfaces;
+using MicroStore.Web.Features.Coupons.Services;
 
-namespace Mango.Web.Core.Extensions;
+namespace MicroStore.Web.Core.Extensions;
 
 public static class ServiceCollectionExtensions
 {

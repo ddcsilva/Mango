@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Mango.Web.Core.Helpers;
+namespace MicroStore.Web.Core.Helpers;
 
 public static class EnumHelper
 {

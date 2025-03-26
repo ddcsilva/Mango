@@ -1,12 +1,12 @@
-﻿using Mango.Web.Core.DTOs;
-using Mango.Web.Core.Enums;
-using Mango.Web.Features.Auth.Interfaces;
+﻿using MicroStore.Web.Core.DTOs;
+using MicroStore.Web.Core.Enums;
+using MicroStore.Web.Features.Auth.Interfaces;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace Mango.Web.Core.Base;
+namespace MicroStore.Web.Core.Base;
 
 public class BaseService(IHttpClientFactory httpClientFactory, ITokenService tokenService) : IBaseService
 {

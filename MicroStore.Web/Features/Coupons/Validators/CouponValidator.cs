@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Mango.Web.Features.Coupons.DTOs;
+using MicroStore.Web.Features.Coupons.DTOs;
 
-namespace Mango.Web.Features.Coupons.Validators;
+namespace MicroStore.Web.Features.Coupons.Validators;
 
 public class CouponValidator : AbstractValidator<CouponDTO>
 {

@@ -1,6 +1,6 @@
-﻿using Mango.Services.AuthAPI.Application.DTOs;
+﻿using MicroStore.Services.AuthAPI.Application.DTOs;
 
-namespace Mango.Services.AuthAPI.Application.Interfaces;
+namespace MicroStore.Services.AuthAPI.Application.Interfaces;
 
 public interface IAuthService
 {

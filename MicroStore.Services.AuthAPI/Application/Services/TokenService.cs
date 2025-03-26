@@ -1,12 +1,12 @@
-﻿using Mango.Services.AuthAPI.Application.Interfaces;
-using Mango.Services.AuthAPI.Domain.Models;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MicroStore.Services.AuthAPI.Application.Interfaces;
+using MicroStore.Services.AuthAPI.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Mango.Services.AuthAPI.Application.Services;
+namespace MicroStore.Services.AuthAPI.Application.Services;
 
 public class TokenService(IOptions<JwtOptions> jwtOptions) : ITokenService
 {

@@ -1,8 +1,8 @@
 ﻿using FluentValidation.AspNetCore;
 using FluentValidation;
-using Mango.Web.Features.Auth.Validators;
+using MicroStore.Web.Features.Auth.Validators;
 
-namespace Mango.Web.Core.Extensions;
+namespace MicroStore.Web.Core.Extensions;
 
 public static class FluentValidationExtensions
 {

@@ -1,12 +1,12 @@
-﻿using Mango.Web.Core.Base;
-using Mango.Web.Core.DTOs;
-using Mango.Web.Core.Enums;
-using Mango.Web.Core.Utilities;
-using Mango.Web.Features.Auth.DTOs;
-using Mango.Web.Features.Auth.Interfaces;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
+using MicroStore.Web.Core.Base;
+using MicroStore.Web.Core.DTOs;
+using MicroStore.Web.Core.Enums;
+using MicroStore.Web.Core.Utilities;
+using MicroStore.Web.Features.Auth.DTOs;
+using MicroStore.Web.Features.Auth.Interfaces;
 
-namespace Mango.Web.Features.Auth.Services;
+namespace MicroStore.Web.Features.Auth.Services;
 
 public class AuthService(IBaseService baseService, IOptions<ServiceUrls> serviceUrls) :  IAuthService
 {

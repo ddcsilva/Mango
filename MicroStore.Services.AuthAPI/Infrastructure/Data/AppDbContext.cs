@@ -1,8 +1,8 @@
-﻿using Mango.Services.AuthAPI.Domain.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MicroStore.Services.AuthAPI.Domain.Models;
 
-namespace Mango.Services.AuthAPI.Infrastructure.Data;
+namespace MicroStore.Services.AuthAPI.Infrastructure.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<ApplicationUser>(options)
 {

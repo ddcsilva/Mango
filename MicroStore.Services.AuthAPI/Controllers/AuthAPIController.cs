@@ -1,8 +1,8 @@
-﻿using Mango.Services.AuthAPI.Application.DTOs;
-using Mango.Services.AuthAPI.Application.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MicroStore.Services.AuthAPI.Application.DTOs;
+using MicroStore.Services.AuthAPI.Application.Interfaces;
 
-namespace Mango.Services.AuthAPI.Controllers;
+namespace MicroStore.Services.AuthAPI.Controllers;
 
 [Route("api/auth")]
 [ApiController]

@@ -1,4 +1,4 @@
-﻿namespace Mango.Services.CouponAPI.Application.DTOs;
+﻿namespace MicroStore.Services.CouponAPI.Application.DTOs;
 
 public class ResponseDTO
 {

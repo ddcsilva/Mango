@@ -1,7 +1,7 @@
-﻿using Mango.Web.Core.DTOs;
-using Mango.Web.Features.Auth.DTOs;
+﻿using MicroStore.Web.Core.DTOs;
+using MicroStore.Web.Features.Auth.DTOs;
 
-namespace Mango.Web.Features.Auth.Interfaces;
+namespace MicroStore.Web.Features.Auth.Interfaces;
 
 public interface IAuthService
 {

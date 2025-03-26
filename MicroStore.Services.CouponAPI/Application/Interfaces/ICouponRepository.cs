@@ -1,6 +1,6 @@
-﻿using Mango.Services.CouponAPI.Domain.Models;
+﻿using MicroStore.Services.CouponAPI.Domain.Models;
 
-namespace Mango.Services.CouponAPI.Application.Interfaces;
+namespace MicroStore.Services.CouponAPI.Application.Interfaces;
 
 public interface ICouponRepository
 {

@@ -1,7 +1,7 @@
-﻿using Mango.Web.Core.DTOs;
+﻿using MicroStore.Web.Core.DTOs;
 using Newtonsoft.Json;
 
-namespace Mango.Web.Core.Extensions;
+namespace MicroStore.Web.Core.Extensions;
 
 public static class ResponseExtensions
 {

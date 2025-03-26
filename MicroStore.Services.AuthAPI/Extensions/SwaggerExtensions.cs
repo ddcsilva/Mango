@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace Mango.Services.AuthAPI.Extensions;
+namespace MicroStore.Services.AuthAPI.Extensions;
 
 public static class SwaggerExtensions
 {

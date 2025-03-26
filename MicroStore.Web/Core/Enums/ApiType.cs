@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Core.Enums;
+﻿namespace MicroStore.Web.Core.Enums;
 
 public enum ApiType
 {

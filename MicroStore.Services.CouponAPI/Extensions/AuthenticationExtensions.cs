@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Mango.Services.CouponAPI.Extensions;
+namespace MicroStore.Services.CouponAPI.Extensions;
 
 public static class AuthenticationExtensions
 {

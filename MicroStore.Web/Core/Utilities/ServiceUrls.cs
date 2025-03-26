@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Core.Utilities;
+﻿namespace MicroStore.Web.Core.Utilities;
 
 public sealed class ServiceUrls
 {

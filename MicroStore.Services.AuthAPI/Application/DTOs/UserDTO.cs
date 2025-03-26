@@ -1,4 +1,4 @@
-﻿namespace Mango.Services.AuthAPI.Application.DTOs;
+﻿namespace MicroStore.Services.AuthAPI.Application.DTOs;
 
 public class UserDTO
 {

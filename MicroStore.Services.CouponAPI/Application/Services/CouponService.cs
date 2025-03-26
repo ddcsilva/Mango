@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Mango.Services.CouponAPI.Application.DTOs;
-using Mango.Services.CouponAPI.Application.Interfaces;
-using Mango.Services.CouponAPI.Domain.Models;
+using MicroStore.Services.CouponAPI.Application.DTOs;
+using MicroStore.Services.CouponAPI.Application.Interfaces;
+using MicroStore.Services.CouponAPI.Domain.Models;
 
-namespace Mango.Services.CouponAPI.Application.Services;
+namespace MicroStore.Services.CouponAPI.Application.Services;
 
 public class CouponService(ICouponRepository couponRepository, IMapper mapper) : ICouponService
 {

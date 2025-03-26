@@ -1,8 +1,8 @@
-﻿using Mango.Services.AuthAPI.Domain.Models;
-using Mango.Services.AuthAPI.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using MicroStore.Services.AuthAPI.Domain.Models;
+using MicroStore.Services.AuthAPI.Infrastructure.Data;
 
-namespace Mango.Services.AuthAPI.Extensions;
+namespace MicroStore.Services.AuthAPI.Extensions;
 
 public static class IdentityExtensions
 {

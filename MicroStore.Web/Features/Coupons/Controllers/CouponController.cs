@@ -1,12 +1,10 @@
-﻿using Mango.Web.Core.Extensions;
-using Mango.Web.Features.Auth.Enums;
-using Mango.Web.Features.Coupons.DTOs;
-using Mango.Web.Features.Coupons.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MicroStore.Web.Core.Extensions;
+using MicroStore.Web.Features.Coupons.DTOs;
+using MicroStore.Web.Features.Coupons.Interfaces;
 using Newtonsoft.Json;
 
-namespace Mango.Web.Features.Coupons.Controllers;
+namespace MicroStore.Web.Features.Coupons.Controllers;
 
 public class CouponController(ICouponService couponService) : Controller
 {

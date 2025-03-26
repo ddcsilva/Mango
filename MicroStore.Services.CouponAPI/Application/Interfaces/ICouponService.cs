@@ -1,6 +1,6 @@
-﻿using Mango.Services.CouponAPI.Application.DTOs;
+﻿using MicroStore.Services.CouponAPI.Application.DTOs;
 
-namespace Mango.Services.CouponAPI.Application.Interfaces;
+namespace MicroStore.Services.CouponAPI.Application.Interfaces;
 
 public interface ICouponService
 {

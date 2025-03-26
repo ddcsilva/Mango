@@ -1,6 +1,6 @@
-﻿using Mango.Web.Core.Enums;
+﻿using MicroStore.Web.Core.Enums;
 
-namespace Mango.Web.Core.DTOs;
+namespace MicroStore.Web.Core.DTOs;
 
 public class RequestDTO
 {

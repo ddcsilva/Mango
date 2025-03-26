@@ -1,9 +1,9 @@
-﻿using Mango.Services.AuthAPI.Application.DTOs;
-using Mango.Services.AuthAPI.Application.Interfaces;
-using Mango.Services.AuthAPI.Domain.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using MicroStore.Services.AuthAPI.Application.DTOs;
+using MicroStore.Services.AuthAPI.Application.Interfaces;
+using MicroStore.Services.AuthAPI.Domain.Models;
 
-namespace Mango.Services.AuthAPI.Application.Services;
+namespace MicroStore.Services.AuthAPI.Application.Services;
 
 public class AuthService(
     UserManager<ApplicationUser> userManager, 

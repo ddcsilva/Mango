@@ -1,4 +1,4 @@
-namespace Mango.Web.Core.Models;
+namespace MicroStore.Web.Core.Models;
 
 public class ErrorViewModel
 {

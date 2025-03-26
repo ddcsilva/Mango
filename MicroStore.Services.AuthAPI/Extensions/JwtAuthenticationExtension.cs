@@ -1,9 +1,9 @@
-﻿using Mango.Services.AuthAPI.Domain.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using MicroStore.Services.AuthAPI.Domain.Models;
 using System.Text;
 
-namespace Mango.Services.AuthAPI.Extensions;
+namespace MicroStore.Services.AuthAPI.Extensions;
 
 public static class JwtAuthenticationExtension
 {

@@ -1,8 +1,8 @@
-﻿using Mango.Services.CouponAPI.Application.Interfaces;
-using Mango.Services.CouponAPI.Application.Services;
-using Mango.Services.CouponAPI.Infrastructure.Repositories;
+﻿using MicroStore.Services.CouponAPI.Application.Interfaces;
+using MicroStore.Services.CouponAPI.Application.Services;
+using MicroStore.Services.CouponAPI.Infrastructure.Repositories;
 
-namespace Mango.Services.CouponAPI.Extensions;
+namespace MicroStore.Services.CouponAPI.Extensions;
 
 public static class ServiceCollectionExtensions
 {

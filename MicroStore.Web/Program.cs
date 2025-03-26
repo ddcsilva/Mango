@@ -1,5 +1,5 @@
-using Mango.Web.Core.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using MicroStore.Web.Core.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

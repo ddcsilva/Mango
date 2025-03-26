@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace Mango.Services.CouponAPI.Extensions;
+namespace MicroStore.Services.CouponAPI.Extensions;
 
 public static class SwaggerExtensions
 {

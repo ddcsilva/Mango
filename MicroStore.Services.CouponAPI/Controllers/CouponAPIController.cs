@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mango.Services.CouponAPI.Application.DTOs;
-using Mango.Services.CouponAPI.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using MicroStore.Services.CouponAPI.Application.Interfaces;
+using MicroStore.Services.CouponAPI.Application.DTOs;
 
-namespace Mango.Services.CouponAPI.Controllers;
+namespace MicroStore.Services.CouponAPI.Controllers;
 
 [Route("api/coupon")]
 [ApiController]

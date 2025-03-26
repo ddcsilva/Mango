@@ -1,8 +1,8 @@
-using Mango.Web.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using MicroStore.Web.Core.Models;
 using System.Diagnostics;
 
-namespace Mango.Web.Features.Home.Controllers
+namespace MicroStore.Web.Features.Home.Controllers
 {
     public class HomeController : Controller
     {

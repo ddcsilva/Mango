@@ -1,7 +1,7 @@
-﻿using Mango.Services.AuthAPI.Application.Interfaces;
-using Mango.Services.AuthAPI.Application.Services;
+﻿using MicroStore.Services.AuthAPI.Application.Interfaces;
+using MicroStore.Services.AuthAPI.Application.Services;
 
-namespace Mango.Services.AuthAPI.Extensions;
+namespace MicroStore.Services.AuthAPI.Extensions;
 
 public static class ServiceCollectionExtensions
 {

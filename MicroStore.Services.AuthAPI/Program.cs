@@ -1,4 +1,4 @@
-using Mango.Services.AuthAPI.Extensions;
+using MicroStore.Services.AuthAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

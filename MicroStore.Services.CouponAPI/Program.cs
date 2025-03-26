@@ -1,5 +1,5 @@
-using Mango.Services.CouponAPI;
-using Mango.Services.CouponAPI.Extensions;
+using MicroStore.Services.CouponAPI;
+using MicroStore.Services.CouponAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

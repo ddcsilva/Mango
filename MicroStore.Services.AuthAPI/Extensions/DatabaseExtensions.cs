@@ -1,7 +1,7 @@
-﻿using Mango.Services.AuthAPI.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MicroStore.Services.AuthAPI.Infrastructure.Data;
 
-namespace Mango.Services.AuthAPI.Extensions;
+namespace MicroStore.Services.AuthAPI.Extensions;
 
 public static class DatabaseExtensions
 {

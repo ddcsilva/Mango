@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Features.Auth.Interfaces;
+﻿namespace MicroStore.Web.Features.Auth.Interfaces;
 
 public interface ITokenService
 {

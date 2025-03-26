@@ -1,4 +1,4 @@
-﻿namespace Mango.Web.Core.DTOs;
+﻿namespace MicroStore.Web.Core.DTOs;
 
 public class ResponseDTO
 {

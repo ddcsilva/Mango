@@ -1,7 +1,7 @@
-﻿using Mango.Services.CouponAPI.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MicroStore.Services.CouponAPI.Infrastructure.Data;
 
-namespace Mango.Services.CouponAPI.Extensions;
+namespace MicroStore.Services.CouponAPI.Extensions;
 
 public static class DatabaseExtensions
 {

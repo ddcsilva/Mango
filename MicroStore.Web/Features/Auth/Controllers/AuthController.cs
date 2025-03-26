@@ -1,16 +1,15 @@
-﻿using Mango.Web.Core.DTOs;
-using Mango.Web.Core.Extensions;
-using Mango.Web.Core.Helpers;
-using Mango.Web.Features.Auth.DTOs;
-using Mango.Web.Features.Auth.Enums;
-using Mango.Web.Features.Auth.Interfaces;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using MicroStore.Web.Features.Auth.Interfaces;
+using MicroStore.Web.Core.Helpers;
+using MicroStore.Web.Features.Auth.Enums;
+using MicroStore.Web.Features.Auth.DTOs;
+using MicroStore.Web.Core.Extensions;
 
-namespace Mango.Web.Features.Auth.Controllers;
+namespace MicroStore.Web.Features.Auth.Controllers;
 
 public class AuthController(IAuthService authService, ITokenService tokenService) : Controller
 {

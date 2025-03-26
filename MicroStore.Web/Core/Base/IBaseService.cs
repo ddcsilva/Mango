@@ -1,6 +1,6 @@
-﻿using Mango.Web.Core.DTOs;
+﻿using MicroStore.Web.Core.DTOs;
 
-namespace Mango.Web.Core.Base;
+namespace MicroStore.Web.Core.Base;
 
 public interface IBaseService
 {

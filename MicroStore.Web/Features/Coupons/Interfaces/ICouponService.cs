@@ -1,7 +1,7 @@
-﻿using Mango.Web.Core.DTOs;
-using Mango.Web.Features.Coupons.DTOs;
+﻿using MicroStore.Web.Core.DTOs;
+using MicroStore.Web.Features.Coupons.DTOs;
 
-namespace Mango.Web.Features.Coupons.Interfaces;
+namespace MicroStore.Web.Features.Coupons.Interfaces;
 
 public interface ICouponService
 {

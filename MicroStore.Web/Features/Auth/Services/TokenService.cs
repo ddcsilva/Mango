@@ -1,7 +1,7 @@
-﻿using Mango.Web.Core.Constants;
-using Mango.Web.Features.Auth.Interfaces;
+﻿using MicroStore.Web.Core.Constants;
+using MicroStore.Web.Features.Auth.Interfaces;
 
-namespace Mango.Web.Features.Auth.Services;
+namespace MicroStore.Web.Features.Auth.Services;
 
 public class TokenService(IHttpContextAccessor httpContextAccessor) : ITokenService
 {
