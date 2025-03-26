@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{84D0AB06-0FAD-4529-BFF2-64AD9368F3FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.CouponAPI", "Mango.Services.CouponAPI\Mango.Services.CouponAPI.csproj", "{06863704-A55A-4F6C-A3F6-3EDADC9B6F07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStore.Services.CouponAPI", "MicroStore.Services.CouponAPI\MicroStore.Services.CouponAPI.csproj", "{06863704-A55A-4F6C-A3F6-3EDADC9B6F07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Web", "Mango.Web\Mango.Web.csproj", "{B7D5CAA4-9753-4A99-9017-440C2B1A2640}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStore.Web", "MicroStore.Web\MicroStore.Web.csproj", "{B7D5CAA4-9753-4A99-9017-440C2B1A2640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.AuthAPI", "Mango.Services.AuthAPI\Mango.Services.AuthAPI.csproj", "{900C467D-43D7-40B0-87C2-1824DA1C1A7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStore.Services.AuthAPI", "MicroStore.Services.AuthAPI\MicroStore.Services.AuthAPI.csproj", "{900C467D-43D7-40B0-87C2-1824DA1C1A7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.ProductAPI", "Mango.Services.ProductAPI\Mango.Services.ProductAPI.csproj", "{CE330CAF-60C6-497D-B7FB-0029A8B689DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroStore.Services.ProductAPI", "MicroStore.Services.ProductAPI\MicroStore.Services.ProductAPI.csproj", "{CE330CAF-60C6-497D-B7FB-0029A8B689DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
